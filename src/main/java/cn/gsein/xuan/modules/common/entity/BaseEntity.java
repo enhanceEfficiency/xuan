@@ -3,8 +3,7 @@ package cn.gsein.xuan.modules.common.entity;
 import cn.gsein.xuan.modules.system.user.entity.User;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -15,10 +14,12 @@ import java.time.LocalDate;
  * @since 2020/06/08
  */
 @Data
+@MappedSuperclass
 public class BaseEntity implements Serializable {
 
     @Id
     @Column
+    @GeneratedValue
     private Long id;
 
     @Column
