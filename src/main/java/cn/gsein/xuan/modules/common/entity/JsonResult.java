@@ -40,6 +40,14 @@ public class JsonResult<T> {
         return new JsonResult<>(ResultCode.ERROR, data);
     }
 
+    public static <T> JsonResult<T> error(String message, T data) {
+        return new JsonResult<>(ResultCode.ERROR.getCode(), message, data);
+    }
+
+    public static <T> JsonResult<T> error(String message) {
+        return error(message, null);
+    }
+
     public static <T> JsonResult<T> error() {
         return error(null);
     }
