@@ -1,9 +1,11 @@
 package cn.gsein.xuan.modules.common.entity;
 
-import cn.gsein.xuan.modules.system.user.entity.User;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -36,6 +38,9 @@ public class BaseEntity implements Serializable {
 
     @Column
     private String remark;
+
+    @Column
+    private boolean deleted;
 
 
 }

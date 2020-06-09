@@ -16,6 +16,10 @@ public enum ResultCode {
      */
     NOT_FOUND(404, "未找到合适的处理器"),
     /**
+     * 请求未授权
+     */
+    UNAUTHORIZED(403, "请求未授权"),
+    /**
      * 服务器异常
      */
     ERROR(500, "服务器异常");

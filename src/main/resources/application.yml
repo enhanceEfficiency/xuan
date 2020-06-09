@@ -4,6 +4,7 @@ spring:
     username: root
     password: t6QO9Z7M
     driver-class-name: com.mysql.cj.jdbc.Driver
-
   jpa:
     generate-ddl: true
+  main:
+    allow-bean-definition-overriding: true
