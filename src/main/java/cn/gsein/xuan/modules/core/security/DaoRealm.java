@@ -2,11 +2,12 @@ package cn.gsein.xuan.modules.core.security;
 
 import cn.gsein.xuan.modules.system.user.dao.UserDao;
 import cn.gsein.xuan.modules.system.user.entity.User;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.Optional;
@@ -22,6 +23,14 @@ public class DaoRealm extends AuthorizingRealm {
     @Resource
     private UserDao userDao;
 
+    @Resource
+    private TokenService tokenService;
+
+    @Override
+    public boolean supports(AuthenticationToken token) {
+        return token instanceof JwtToken;
+    }
+
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         return null;
@@ -29,29 +38,26 @@ public class DaoRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        UsernamePasswordToken upToken = (UsernamePasswordToken) token;
-        String username = upToken.getUsername();
 
-        // Null username is invalid
-        if (username == null) {
-            throw new AccountException("不允许空用户名");
+        String jwtToken = (String) token.getPrincipal();
+        if (StringUtils.isEmpty(jwtToken)) {
+            throw new AccountException("不允许空token");
         }
 
-        SimpleAuthenticationInfo info;
+        if (!tokenService.verify(jwtToken)) {
+            throw new UnknownAccountException("token不合法");
+        }
+
+        DecodedJWT decodedJWT = tokenService.decode(jwtToken);
+        String username = decodedJWT.getClaim("username").asString();
+
+        // 查询数据库判断用户是否存在
         Optional<User> user = userDao.getUserByUsernameAndDeletedIsFalse(username);
-        Optional<String> password = user.map(User::getPassword);
-
-        if (!password.isPresent()) {
-            throw new UnknownAccountException("用户名或密码错误");
+        if (!user.isPresent()) {
+            throw new UnknownAccountException("用户不存在");
         } else {
-            info = new SimpleAuthenticationInfo(username, password.get().toCharArray(), getName());
+            return new SimpleAuthenticationInfo(username, token.getCredentials(), getName());
         }
 
-        // 如果有盐值，加入info中
-        Optional<String> salt = user.map(User::getSalt);
-        salt.ifPresent(s -> info.setCredentialsSalt(ByteSource.Util.bytes(s)));
-
-
-        return info;
     }
 }

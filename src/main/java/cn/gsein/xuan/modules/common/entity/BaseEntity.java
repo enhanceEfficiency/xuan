@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * 所有实体类的基类
@@ -28,13 +28,13 @@ public class BaseEntity implements Serializable {
     private Long createdUserId;
 
     @Column
-    private LocalDate createdTime;
+    private LocalDateTime createdTime;
 
     @Column
     private Long updatedUserId;
 
     @Column
-    private LocalDate updatedTime;
+    private LocalDateTime updatedTime;
 
     @Column
     private String remark;

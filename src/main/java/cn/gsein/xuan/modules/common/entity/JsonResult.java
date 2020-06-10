@@ -56,7 +56,7 @@ public class JsonResult<T> {
         return new JsonResult<>(resultCode, data);
     }
 
-    public static <T> JsonResult<T> get(int code, String message, T data) {
-        return new JsonResult<>(code, message, data);
+    public static <T> JsonResult<T> get(ResultCode code, String message, T data) {
+        return new JsonResult<>(code.getCode(), message, data);
     }
 }

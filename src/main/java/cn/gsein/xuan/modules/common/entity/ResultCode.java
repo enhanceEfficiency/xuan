@@ -20,6 +20,10 @@ public enum ResultCode {
      */
     UNAUTHORIZED(403, "请求未授权"),
     /**
+     * 客户端请求不能被服务器理解，业务异常
+     */
+    BAD_REQUEST(400, "请求错误"),
+    /**
      * 服务器异常
      */
     ERROR(500, "服务器异常");

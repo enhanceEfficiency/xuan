@@ -1,14 +1,20 @@
 package cn.gsein.xuan.modules.core.config;
 
 import cn.gsein.xuan.modules.core.security.DaoRealm;
-import cn.gsein.xuan.modules.core.security.Md5CredentialsMatcher;
-import org.apache.shiro.mgt.SecurityManager;
+import cn.gsein.xuan.modules.core.security.JwtDefaultSubjectFactory;
+import cn.gsein.xuan.modules.core.security.TokenAuthenticationFilter;
+import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
+import org.apache.shiro.mgt.DefaultSubjectDAO;
+import org.apache.shiro.mgt.SessionsSecurityManager;
+import org.apache.shiro.mgt.SubjectFactory;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -21,28 +27,52 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
+
     @Bean
     public Realm daoRealm() {
-        DaoRealm daoRealm = new DaoRealm();
-        daoRealm.setCredentialsMatcher(new Md5CredentialsMatcher());
-        return daoRealm;
+        return new DaoRealm();
     }
 
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
-        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        shiroFilterFactoryBean.setSecurityManager(securityManager);
+    public SubjectFactory subjectFactory() {
+        return new JwtDefaultSubjectFactory();
+    }
 
-        // 拦截器 从上到下的顺序
+    @Bean
+    public SessionsSecurityManager customSecurityManager() {
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        securityManager.setRealm(daoRealm());
+
+        DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
+        DefaultSessionStorageEvaluator evaluator = new DefaultSessionStorageEvaluator();
+        evaluator.setSessionStorageEnabled(false);
+        subjectDAO.setSessionStorageEvaluator(evaluator);
+
+        securityManager.setSubjectDAO(subjectDAO);
+        securityManager.setSubjectFactory(subjectFactory());
+
+        return securityManager;
+    }
+
+
+    @Bean
+    public ShiroFilterFactoryBean shiroFilterFactoryBean() {
+        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+        shiroFilterFactoryBean.setSecurityManager(customSecurityManager());
+
+        // 自定义过滤器
+        Map<String, Filter> filterMap = new HashMap<>();
+        filterMap.put("token", new TokenAuthenticationFilter());
+        shiroFilterFactoryBean.setFilters(filterMap);
+
+        // 拦截请求 从上到下的顺序
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/static/**", "anon");
         filterChainDefinitionMap.put("/user/login", "anon");
+        filterChainDefinitionMap.put("/error", "anon");
         filterChainDefinitionMap.put("/logout", "logout");
-        filterChainDefinitionMap.put("/**", "authc");
+        filterChainDefinitionMap.put("/**", "token");
 
-        // 自定义过滤器
-        Map<String, Filter> filterMap = new LinkedHashMap<>();
-        shiroFilterFactoryBean.setFilters(filterMap);
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
