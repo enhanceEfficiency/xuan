@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.web.filter.AccessControlFilter;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -35,7 +36,7 @@ public class TokenAuthenticationFilter extends AccessControlFilter {
         // 从token中解析出jwt的字符串
         String token = httpServletRequest.getHeader("Authorization");
         // token格式Bearer XXX
-        if (token.startsWith("Bearer")) {
+        if (!StringUtils.isEmpty(token) && token.startsWith("Bearer")) {
             token = token.substring(7);
         }
         JwtToken jwtToken = new JwtToken(token);
