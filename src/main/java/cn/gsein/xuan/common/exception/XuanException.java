@@ -1,4 +1,4 @@
-package cn.gsein.xuan.modules.common.exception;
+package cn.gsein.xuan.common.exception;
 
 /**
  * 自定义异常的基类

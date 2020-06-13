@@ -1,6 +1,6 @@
 package cn.gsein.xuan.modules.system.user.service.impl;
 
-import cn.gsein.xuan.modules.common.service.impl.BaseServiceImpl;
+import cn.gsein.xuan.common.service.impl.BaseServiceImpl;
 import cn.gsein.xuan.modules.system.user.dao.UserDao;
 import cn.gsein.xuan.modules.system.user.entity.User;
 import cn.gsein.xuan.modules.system.user.service.UserService;

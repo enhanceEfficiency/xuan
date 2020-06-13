@@ -1,7 +1,7 @@
-package cn.gsein.xuan.modules.common.service;
+package cn.gsein.xuan.common.service;
 
-import cn.gsein.xuan.modules.common.dao.BaseDao;
-import cn.gsein.xuan.modules.common.entity.BaseEntity;
+import cn.gsein.xuan.common.dao.BaseDao;
+import cn.gsein.xuan.common.entity.BaseEntity;
 
 /**
  * 业务层的父级接口

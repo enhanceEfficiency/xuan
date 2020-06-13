@@ -1,4 +1,4 @@
-package cn.gsein.xuan.modules.common.controller;
+package cn.gsein.xuan.common.controller;
 
 /**
  * @author G. Seinfeld

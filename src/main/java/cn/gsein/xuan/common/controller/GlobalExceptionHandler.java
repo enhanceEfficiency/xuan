@@ -1,7 +1,7 @@
-package cn.gsein.xuan.modules.common.controller;
+package cn.gsein.xuan.common.controller;
 
-import cn.gsein.xuan.modules.common.entity.JsonResult;
-import cn.gsein.xuan.modules.common.exception.XuanException;
+import cn.gsein.xuan.common.entity.JsonResult;
+import cn.gsein.xuan.common.exception.XuanException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

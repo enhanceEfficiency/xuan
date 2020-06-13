@@ -1,8 +1,8 @@
-package cn.gsein.xuan.modules.core.config;
+package cn.gsein.xuan.core.config;
 
-import cn.gsein.xuan.modules.core.security.DaoRealm;
-import cn.gsein.xuan.modules.core.security.JwtDefaultSubjectFactory;
-import cn.gsein.xuan.modules.core.security.TokenAuthenticationFilter;
+import cn.gsein.xuan.core.security.DaoRealm;
+import cn.gsein.xuan.core.security.JwtDefaultSubjectFactory;
+import cn.gsein.xuan.core.security.TokenAuthenticationFilter;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SessionsSecurityManager;

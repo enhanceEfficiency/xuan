@@ -1,6 +1,6 @@
-package cn.gsein.xuan.modules.core.security;
+package cn.gsein.xuan.core.security;
 
-import cn.gsein.xuan.modules.common.util.DateUtil;
+import cn.gsein.xuan.common.util.DateUtil;
 import cn.hutool.core.codec.Base64;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

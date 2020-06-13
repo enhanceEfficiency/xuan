@@ -1,4 +1,4 @@
-package cn.gsein.xuan.modules.common.entity;
+package cn.gsein.xuan.common.entity;
 
 import lombok.Builder;
 import lombok.Data;

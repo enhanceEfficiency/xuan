@@ -1,10 +1,10 @@
 package cn.gsein.xuan.modules.system.user.controller;
 
-import cn.gsein.xuan.modules.common.controller.BaseController;
-import cn.gsein.xuan.modules.common.entity.JsonResult;
-import cn.gsein.xuan.modules.common.entity.ResultCode;
-import cn.gsein.xuan.modules.common.exception.XuanException;
-import cn.gsein.xuan.modules.core.security.TokenService;
+import cn.gsein.xuan.common.controller.BaseController;
+import cn.gsein.xuan.common.entity.JsonResult;
+import cn.gsein.xuan.common.entity.ResultCode;
+import cn.gsein.xuan.common.exception.XuanException;
+import cn.gsein.xuan.core.security.TokenService;
 import cn.gsein.xuan.modules.system.user.entity.User;
 import cn.gsein.xuan.modules.system.user.service.UserService;
 import cn.hutool.core.util.IdUtil;

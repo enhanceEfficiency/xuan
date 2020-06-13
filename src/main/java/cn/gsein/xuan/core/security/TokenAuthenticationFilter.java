@@ -1,7 +1,7 @@
-package cn.gsein.xuan.modules.core.security;
+package cn.gsein.xuan.core.security;
 
-import cn.gsein.xuan.modules.common.entity.JsonResult;
-import cn.gsein.xuan.modules.common.entity.ResultCode;
+import cn.gsein.xuan.common.entity.JsonResult;
+import cn.gsein.xuan.common.entity.ResultCode;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;

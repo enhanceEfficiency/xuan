@@ -1,9 +1,9 @@
-package cn.gsein.xuan.modules.common.service.impl;
+package cn.gsein.xuan.common.service.impl;
 
-import cn.gsein.xuan.modules.common.dao.BaseDao;
-import cn.gsein.xuan.modules.common.entity.BaseEntity;
-import cn.gsein.xuan.modules.common.service.BaseService;
-import cn.gsein.xuan.modules.common.util.DateUtil;
+import cn.gsein.xuan.common.dao.BaseDao;
+import cn.gsein.xuan.common.entity.BaseEntity;
+import cn.gsein.xuan.common.service.BaseService;
+import cn.gsein.xuan.common.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

@@ -1,4 +1,4 @@
-package cn.gsein.xuan.modules.common.util;
+package cn.gsein.xuan.common.util;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

@@ -1,4 +1,4 @@
-package cn.gsein.xuan.modules.core.security;
+package cn.gsein.xuan.core.security;
 
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.subject.SubjectContext;

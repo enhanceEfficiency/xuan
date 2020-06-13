@@ -1,4 +1,4 @@
-package cn.gsein.xuan.modules.core.security;
+package cn.gsein.xuan.core.security;
 
 import cn.gsein.xuan.modules.system.user.dao.UserDao;
 import cn.gsein.xuan.modules.system.user.entity.User;

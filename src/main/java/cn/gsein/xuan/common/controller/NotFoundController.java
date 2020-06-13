@@ -1,7 +1,7 @@
-package cn.gsein.xuan.modules.common.controller;
+package cn.gsein.xuan.common.controller;
 
-import cn.gsein.xuan.modules.common.entity.JsonResult;
-import cn.gsein.xuan.modules.common.entity.ResultCode;
+import cn.gsein.xuan.common.entity.JsonResult;
+import cn.gsein.xuan.common.entity.ResultCode;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
