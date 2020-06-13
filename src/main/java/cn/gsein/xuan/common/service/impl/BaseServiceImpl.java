@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author G. Seinfeld
  * @since 2020/06/08
  */
-public class BaseServiceImpl<T extends BaseEntity, D extends BaseDao<T>> implements BaseService<T, D> {
+public class BaseServiceImpl<T extends BaseEntity, D extends BaseDao<T>> implements BaseService<T> {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired

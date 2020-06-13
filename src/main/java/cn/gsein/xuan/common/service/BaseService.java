@@ -9,7 +9,7 @@ import cn.gsein.xuan.common.entity.BaseEntity;
  * @author G. Seinfeld
  * @since 2020/06/08
  */
-public interface BaseService<T extends BaseEntity, D extends BaseDao<T>> {
+public interface BaseService<T extends BaseEntity> {
 
     T save(T t);
 

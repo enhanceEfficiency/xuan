@@ -1,10 +1,12 @@
 package cn.gsein.xuan.modules.system.user.entity;
 
 import cn.gsein.xuan.common.entity.BaseEntity;
+import cn.gsein.xuan.modules.system.role.entity.Role;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author G. Seinfeld
@@ -19,13 +21,20 @@ public class User extends BaseEntity {
     /**
      * 用户名
      */
+    @Column
     private String username;
     /**
      * 密码
      */
+    @Column
     private String password;
     /**
      * 密码加密的盐值
      */
+    @Column
     private String salt;
+
+    @ManyToMany
+    @JoinTable(name="xuan_user_role")
+    private List<Role> roles;
 }

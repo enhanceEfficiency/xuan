@@ -55,26 +55,22 @@ public interface BaseDao<T extends BaseEntity> extends PagingAndSortingRepositor
     @Query("select count(e) from #{#entityName} e where e.deleted = false")
     long count();
 
-    @Override
     @Query("update #{#entityName} e set e.deleted = true where e.id = ?1")
     @Modifying
     @Transactional
-    void deleteById(Long id);
+    void softDeleteById(Long id);
 
-    @Override
-    default void delete(T entity) {
+    default void softDelete(T entity) {
         deleteById(entity.getId());
     }
 
-    @Override
-    default void deleteAll(Iterable<? extends T> entities) {
+    default void softDeleteAll(Iterable<? extends T> entities) {
         entities.forEach(this::delete);
     }
 
-    @Override
     @Modifying
     @Transactional
     @Query("update #{#entityName} e set e.deleted = true")
-    void deleteAll();
+    void softDeleteAll();
 
 }
