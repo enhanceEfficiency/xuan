@@ -1,7 +1,7 @@
-package cn.gsein.xuan.modules.system.user.service;
+package cn.gsein.xuan.modules.system.service;
 
 import cn.gsein.xuan.common.service.BaseService;
-import cn.gsein.xuan.modules.system.user.entity.User;
+import cn.gsein.xuan.modules.system.entity.User;
 
 import java.util.Optional;
 

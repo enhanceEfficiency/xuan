@@ -1,7 +1,7 @@
-package cn.gsein.xuan.modules.system.user.dao;
+package cn.gsein.xuan.modules.system.dao;
 
 import cn.gsein.xuan.common.dao.BaseDao;
-import cn.gsein.xuan.modules.system.user.entity.User;
+import cn.gsein.xuan.modules.system.entity.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

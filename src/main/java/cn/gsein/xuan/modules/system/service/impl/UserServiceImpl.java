@@ -1,9 +1,9 @@
-package cn.gsein.xuan.modules.system.user.service.impl;
+package cn.gsein.xuan.modules.system.service.impl;
 
 import cn.gsein.xuan.common.service.impl.BaseServiceImpl;
-import cn.gsein.xuan.modules.system.user.dao.UserDao;
-import cn.gsein.xuan.modules.system.user.entity.User;
-import cn.gsein.xuan.modules.system.user.service.UserService;
+import cn.gsein.xuan.modules.system.dao.UserDao;
+import cn.gsein.xuan.modules.system.entity.User;
+import cn.gsein.xuan.modules.system.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

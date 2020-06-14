@@ -1,6 +1,6 @@
-package cn.gsein.xuan.modules.system.user.service;
+package cn.gsein.xuan.modules.system.service;
 
-import cn.gsein.xuan.modules.system.user.entity.User;
+import cn.gsein.xuan.modules.system.entity.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;

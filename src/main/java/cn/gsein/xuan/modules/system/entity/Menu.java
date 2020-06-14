@@ -1,7 +1,6 @@
-package cn.gsein.xuan.modules.system.menu.entity;
+package cn.gsein.xuan.modules.system.entity;
 
 import cn.gsein.xuan.common.entity.BaseEntity;
-import cn.gsein.xuan.modules.system.permission.entity.Permission;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

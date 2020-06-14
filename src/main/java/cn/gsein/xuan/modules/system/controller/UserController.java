@@ -1,12 +1,12 @@
-package cn.gsein.xuan.modules.system.user.controller;
+package cn.gsein.xuan.modules.system.controller;
 
 import cn.gsein.xuan.common.controller.BaseController;
 import cn.gsein.xuan.common.entity.JsonResult;
 import cn.gsein.xuan.common.entity.ResultCode;
 import cn.gsein.xuan.common.exception.XuanException;
 import cn.gsein.xuan.core.security.TokenService;
-import cn.gsein.xuan.modules.system.user.entity.User;
-import cn.gsein.xuan.modules.system.user.service.UserService;
+import cn.gsein.xuan.modules.system.entity.User;
+import cn.gsein.xuan.modules.system.service.UserService;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.digest.MD5;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,7 @@
-package cn.gsein.xuan.modules.system.role.dao;
+package cn.gsein.xuan.modules.system.dao;
 
-import cn.gsein.xuan.modules.system.permission.entity.Permission;
-import cn.gsein.xuan.modules.system.role.entity.Role;
+import cn.gsein.xuan.modules.system.entity.Permission;
+import cn.gsein.xuan.modules.system.entity.Role;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,7 +1,7 @@
-package cn.gsein.xuan.modules.system.role.dao;
+package cn.gsein.xuan.modules.system.dao;
 
 import cn.gsein.xuan.common.dao.BaseDao;
-import cn.gsein.xuan.modules.system.role.entity.Role;
+import cn.gsein.xuan.modules.system.entity.Role;
 
 /**
  * 角色的持久层

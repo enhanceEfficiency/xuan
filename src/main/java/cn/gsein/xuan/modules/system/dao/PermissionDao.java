@@ -1,7 +1,7 @@
-package cn.gsein.xuan.modules.system.permission.dao;
+package cn.gsein.xuan.modules.system.dao;
 
 import cn.gsein.xuan.common.dao.BaseDao;
-import cn.gsein.xuan.modules.system.permission.entity.Permission;
+import cn.gsein.xuan.modules.system.entity.Permission;
 
 /**
  * 权限的持久层

@@ -1,7 +1,7 @@
 package cn.gsein.xuan.core.security;
 
-import cn.gsein.xuan.modules.system.user.dao.UserDao;
-import cn.gsein.xuan.modules.system.user.entity.User;
+import cn.gsein.xuan.modules.system.dao.UserDao;
+import cn.gsein.xuan.modules.system.entity.User;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
