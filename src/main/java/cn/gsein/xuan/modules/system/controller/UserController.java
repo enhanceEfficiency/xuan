@@ -9,10 +9,7 @@ import cn.gsein.xuan.modules.system.entity.User;
 import cn.gsein.xuan.modules.system.service.UserService;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.digest.MD5;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
@@ -59,12 +56,12 @@ public class UserController extends BaseController {
     /**
      * 执行登陆，获取token
      *
-     * @param username 用户名
-     * @param password 密码
      * @return 封装的token
      */
     @PostMapping("/login")
-    public JsonResult<String> login(String username, String password) {
+    public JsonResult<String> login(@RequestBody User loginUser) {
+        String username = loginUser.getUsername();
+        String password = loginUser.getPassword();
         Optional<User> user = userService.getUserByUsernameAndDeletedIsFalse(username);
         // 用户不存在
         if (!user.isPresent()) {
