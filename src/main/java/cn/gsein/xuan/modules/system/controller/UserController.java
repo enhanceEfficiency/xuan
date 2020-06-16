@@ -9,6 +9,8 @@ import cn.gsein.xuan.modules.system.entity.User;
 import cn.gsein.xuan.modules.system.service.UserService;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.digest.MD5;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -80,6 +82,25 @@ public class UserController extends BaseController {
         // 生成token
         String jwt = tokenService.generateToken(username);
         return JsonResult.ok(jwt);
+
+    }
+
+
+    @GetMapping("/info")
+    public JsonResult<User> info(String token) {
+
+        // token格式Bearer XXX
+        if (!StringUtils.isEmpty(token) && token.startsWith("Bearer")) {
+            token = token.substring(7);
+        }
+
+        // 解析JWT token
+        DecodedJWT decodedJWT = tokenService.decode(token);
+        String username = decodedJWT.getClaim("username").asString();
+        Optional<User> loginUser = userService.getUserByUsernameAndDeletedIsFalse(username);
+
+        // 传头像、介绍、角色和名字
+        return loginUser.map(JsonResult::ok).orElseGet(() -> JsonResult.error("用户不存在"));
 
     }
 }

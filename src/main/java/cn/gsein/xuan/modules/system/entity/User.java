@@ -22,18 +22,38 @@ public class User extends BaseEntity {
      */
     @Column
     private String username;
+
     /**
      * 密码
      */
     @Column
     private String password;
+
     /**
      * 密码加密的盐值
      */
     @Column
     private String salt;
 
+    /**
+     * 头像地址
+     */
+    @Column
+    private String avatar;
+
+    /**
+     * 真实姓名
+     */
+    @Column
+    private String name;
+
+    /**
+     * 个人介绍
+     */
+    @Column
+    private String introduction;
+
     @ManyToMany
-    @JoinTable(name="xuan_user_role")
+    @JoinTable(name = "xuan_user_role")
     private List<Role> roles;
 }
