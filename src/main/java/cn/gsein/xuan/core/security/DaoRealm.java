@@ -52,7 +52,7 @@ public class DaoRealm extends AuthorizingRealm {
         String username = decodedJWT.getClaim("username").asString();
 
         // 查询数据库判断用户是否存在
-        Optional<User> user = userDao.getUserByUsernameAndDeletedIsFalse(username);
+        Optional<User> user = userDao.findByUsernameAndDeletedIsFalse(username);
         if (!user.isPresent()) {
             throw new UnknownAccountException("用户不存在");
         } else {

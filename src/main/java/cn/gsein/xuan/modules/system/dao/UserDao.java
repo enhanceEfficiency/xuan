@@ -13,5 +13,5 @@ import java.util.Optional;
 @Repository
 public interface UserDao extends BaseDao<User> {
 
-    Optional<User> getUserByUsernameAndDeletedIsFalse(String username);
+    Optional<User> findByUsernameAndDeletedIsFalse(String username);
 }

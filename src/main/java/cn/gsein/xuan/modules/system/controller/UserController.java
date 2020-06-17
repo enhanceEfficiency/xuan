@@ -64,7 +64,7 @@ public class UserController extends BaseController {
     public JsonResult<String> login(@RequestBody User loginUser) {
         String username = loginUser.getUsername();
         String password = loginUser.getPassword();
-        Optional<User> user = userService.getUserByUsernameAndDeletedIsFalse(username);
+        Optional<User> user = userService.findByUsernameAndDeletedIsFalse(username);
         // 用户不存在
         if (!user.isPresent()) {
             return JsonResult.get(ResultCode.BAD_REQUEST, "用户名或密码错误", null);
@@ -97,7 +97,7 @@ public class UserController extends BaseController {
         // 解析JWT token
         DecodedJWT decodedJWT = tokenService.decode(token);
         String username = decodedJWT.getClaim("username").asString();
-        Optional<User> loginUser = userService.getUserByUsernameAndDeletedIsFalse(username);
+        Optional<User> loginUser = userService.findByUsernameAndDeletedIsFalse(username);
 
         // 传头像、介绍、角色和名字
         return loginUser.map(JsonResult::ok).orElseGet(() -> JsonResult.error("用户不存在"));

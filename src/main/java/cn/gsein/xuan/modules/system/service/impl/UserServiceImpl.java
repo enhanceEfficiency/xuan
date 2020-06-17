@@ -20,7 +20,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserDao> implements U
     private UserDao userDao;
 
     @Override
-    public Optional<User> getUserByUsernameAndDeletedIsFalse(String username){
-        return userDao.getUserByUsernameAndDeletedIsFalse(username);
+    public Optional<User> findByUsernameAndDeletedIsFalse(String username){
+        return userDao.findByUsernameAndDeletedIsFalse(username);
     }
 }

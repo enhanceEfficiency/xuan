@@ -11,5 +11,5 @@ import java.util.Optional;
  */
 public interface UserService extends BaseService<User> {
 
-    Optional<User> getUserByUsernameAndDeletedIsFalse(String username);
+    Optional<User> findByUsernameAndDeletedIsFalse(String username);
 }

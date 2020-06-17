@@ -1,6 +1,7 @@
 package cn.gsein.xuan.modules.system.entity;
 
 import cn.gsein.xuan.common.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -26,5 +27,6 @@ public class Permission extends BaseEntity {
     private String name;
 
     @ManyToMany(mappedBy = "permissions")
+    @JsonIgnore
     private List<Role> roles;
 }
