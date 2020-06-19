@@ -3,11 +3,10 @@ package cn.gsein.xuan.core.config;
 import cn.gsein.xuan.core.security.DaoRealm;
 import cn.gsein.xuan.core.security.JwtDefaultSubjectFactory;
 import cn.gsein.xuan.core.security.TokenAuthenticationFilter;
-import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
-import org.apache.shiro.mgt.DefaultSubjectDAO;
-import org.apache.shiro.mgt.SessionsSecurityManager;
-import org.apache.shiro.mgt.SubjectFactory;
+import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.mgt.*;
 import org.apache.shiro.realm.Realm;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
@@ -80,5 +79,13 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
         return shiroFilterFactoryBean;
+    }
+
+
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
+        advisor.setSecurityManager(securityManager);
+        return advisor;
     }
 }

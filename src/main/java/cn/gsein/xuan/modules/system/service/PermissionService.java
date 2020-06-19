@@ -8,4 +8,5 @@ import cn.gsein.xuan.modules.system.entity.Permission;
  * @since 2020/06/14
  */
 public interface PermissionService extends BaseService<Permission> {
+
 }

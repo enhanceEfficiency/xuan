@@ -10,6 +10,7 @@ import cn.gsein.xuan.modules.system.service.UserService;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.digest.MD5;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/user")
+@Slf4j
 public class UserController extends BaseController {
 
     @Resource
@@ -88,6 +90,8 @@ public class UserController extends BaseController {
 
     @GetMapping("/info")
     public JsonResult<User> info(String token) {
+
+        log.info("当前登录用户为：" + loginUserName().orElse(null));
 
         // token格式Bearer XXX
         if (!StringUtils.isEmpty(token) && token.startsWith("Bearer")) {

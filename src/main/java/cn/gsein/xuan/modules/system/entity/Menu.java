@@ -1,8 +1,10 @@
 package cn.gsein.xuan.modules.system.entity;
 
 import cn.gsein.xuan.common.entity.BaseEntity;
-import lombok.Data;
+import cn.gsein.xuan.modules.system.enums.MenuType;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -12,8 +14,9 @@ import javax.persistence.*;
  */
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "xuan_menu")
-@Data
 @Entity
+@Getter
+@Setter
 public class Menu extends BaseEntity {
     /**
      * 菜单名称
@@ -37,8 +40,20 @@ public class Menu extends BaseEntity {
      * 父级菜单
      */
     @JoinColumn(name = "parent_id")
-    @OneToOne
+    @ManyToOne
     private Menu parent;
+
+    /**
+     * 菜单的图标
+     */
+    @Column
+    private String icon;
+
+    /**
+     * 菜单类型
+     */
+    @Column
+    private MenuType type;
 
     /**
      * 祖先节点列表，以逗号分隔，用来寻找所有的父/子节点
@@ -51,4 +66,5 @@ public class Menu extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "permission_id")
     private Permission permission;
+
 }

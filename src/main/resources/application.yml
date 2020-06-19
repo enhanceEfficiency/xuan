@@ -32,7 +32,12 @@ spring:
   jpa:
     generate-ddl: on
     show-sql: true
+  aop:
+    auto: false
 logging:
   config: classpath:logback-spring.xml
   file:
     path: /Users/lianghao/xuan
+shiro:
+  annotations:
+    enabled: false

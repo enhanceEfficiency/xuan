@@ -10,4 +10,5 @@ import cn.gsein.xuan.modules.system.entity.Permission;
  * @since 2020/06/13
  */
 public interface PermissionDao extends BaseDao<Permission> {
+
 }

@@ -56,7 +56,7 @@ public class DaoRealm extends AuthorizingRealm {
         if (!user.isPresent()) {
             throw new UnknownAccountException("用户不存在");
         } else {
-            return new SimpleAuthenticationInfo(username, token.getCredentials(), getName());
+            return new SimpleAuthenticationInfo(user.get(), token.getCredentials(), getName());
         }
 
     }

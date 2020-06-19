@@ -4,6 +4,7 @@ import cn.gsein.xuan.common.entity.BaseEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -18,7 +19,7 @@ import java.util.Optional;
  * @since 2020/06/08
  */
 @NoRepositoryBean
-public interface BaseDao<T extends BaseEntity> extends PagingAndSortingRepository<T, Long> {
+public interface BaseDao<T extends BaseEntity> extends PagingAndSortingRepository<T, Long>, JpaSpecificationExecutor<T> {
 
     @Override
     @Transactional(readOnly = true)
