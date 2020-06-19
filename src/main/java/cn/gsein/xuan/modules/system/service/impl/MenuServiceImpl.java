@@ -8,8 +8,11 @@ import cn.gsein.xuan.modules.system.entity.Menu;
 import cn.gsein.xuan.modules.system.entity.Permission;
 import cn.gsein.xuan.modules.system.entity.Role;
 import cn.gsein.xuan.modules.system.entity.User;
+import cn.gsein.xuan.modules.system.enums.MenuType;
 import cn.gsein.xuan.modules.system.service.MenuService;
 import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.lang.tree.TreeNode;
+import cn.hutool.core.lang.tree.TreeUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,10 +36,13 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu, MenuDao> implements M
     }
 
 
+    @Override
     @Transactional(readOnly = true, noRollbackFor = Exception.class)
     public List<Tree<Optional<Menu>>> getMenuTree() {
-        List<Menu> menus = new ArrayList<>();
+        List<Menu> menus;
         Optional<User> loginUser = ShiroUtil.getLoginUser();
+
+        // 管理员直接返回所有Menu
         if (loginUser.isPresent() && Constant.ADMINISTRATOR_ID.equals(loginUser.get().getId())) {
             menus = dao.findAll();
         } else {
@@ -47,9 +53,20 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu, MenuDao> implements M
                             .flatMap(Collection::stream)
                             .collect(Collectors.toSet())
             );
-
+            Optional<List<Menu>> optionalMenus = permissions.map(perms -> dao.findByPermissions(perms));
+            menus = optionalMenus.orElse(new ArrayList<>());
         }
-        return null;
+
+        // 只保留类型为菜单的Menu
+        menus = menus.stream().filter(menu -> MenuType.MENU.equals(menu.getType())).collect(Collectors.toList());
+
+        // 将菜单做树型化处理
+        List<TreeNode<Optional<Menu>>> menuTreeNodes = menus.stream()
+                .map(menu -> {
+                    Optional<Menu> optional = Optional.of(menu);
+                    return new TreeNode<>(optional, optional.map(Menu::getParent), optional.map(Menu::getName).orElse(""), 1);
+                }).collect(Collectors.toList());
+        return TreeUtil.build(menuTreeNodes, Optional.empty());
 
     }
 }
