@@ -41,3 +41,5 @@ logging:
 shiro:
   annotations:
     enabled: false
+xuan:
+  upload-path: /home/lhing17/profile/upload/
