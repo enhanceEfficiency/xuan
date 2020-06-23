@@ -26,7 +26,7 @@ import java.util.Optional;
  * @since 2020/06/09
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/sys/user")
 @Slf4j
 public class UserController extends BaseController {
 

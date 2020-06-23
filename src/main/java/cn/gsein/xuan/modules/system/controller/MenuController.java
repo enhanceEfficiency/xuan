@@ -19,7 +19,7 @@ import java.util.Optional;
  * @author G. Seinfeld
  * @since 2020/06/18
  */
-@RequestMapping("/menu")
+@RequestMapping("/sys/menu")
 @RestController
 public class MenuController extends BaseController {
 

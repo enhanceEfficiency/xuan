@@ -67,7 +67,7 @@ public class ShiroConfig {
         // 拦截请求 从上到下的顺序
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/static/**", "anon");
-        filterChainDefinitionMap.put("/user/login", "anon");
+        filterChainDefinitionMap.put("/sys/user/login", "anon");
         filterChainDefinitionMap.put("/upload/**", "anon");
         filterChainDefinitionMap.put("/error", "anon");
         filterChainDefinitionMap.put("/druid/**", "anon");
