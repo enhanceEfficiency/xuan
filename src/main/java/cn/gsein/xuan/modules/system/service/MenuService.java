@@ -15,6 +15,10 @@ import java.util.Optional;
  * @since 2020/06/18
  */
 public interface MenuService extends BaseService<Menu> {
+    /**
+     * 获取当前登录用户对应的菜单树
+     * @return 当前登录用户对应的菜单树
+     */
     @Transactional(readOnly = true, noRollbackFor = Exception.class)
-    List<Tree<Optional<Menu>>> getMenuTree();
+    List<Tree<Optional<Menu>>> getMenuTreeForLoginUser();
 }

@@ -38,7 +38,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu, MenuDao> implements M
 
     @Override
     @Transactional(readOnly = true, noRollbackFor = Exception.class)
-    public List<Tree<Optional<Menu>>> getMenuTree() {
+    public List<Tree<Optional<Menu>>> getMenuTreeForLoginUser() {
         List<Menu> menus;
         Optional<User> loginUser = ShiroUtil.getLoginUser();
 

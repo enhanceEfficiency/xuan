@@ -31,10 +31,10 @@ public class Menu extends BaseEntity {
     private String url;
 
     /**
-     * 是否为菜单的叶子节点
+     * 是否存在子节点
      */
     @Column
-    private boolean leaf;
+    private boolean hasChildren;
 
     /**
      * 父级菜单

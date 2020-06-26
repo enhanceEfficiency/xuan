@@ -5,9 +5,11 @@ import cn.gsein.xuan.modules.system.entity.Menu;
 import cn.gsein.xuan.modules.system.entity.Permission;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -34,5 +36,25 @@ public interface MenuDao extends BaseDao<Menu> {
             return criteriaBuilder.and(predicate, isDeleted);
         };
         return findAll(spec);
+    }
+
+
+    @Override
+    default Specification<Menu> getSpecification(Menu menu) {
+        List<Predicate> predicates = new ArrayList<>();
+        return (root, criteriaQuery, criteriaBuilder) -> {
+            if (menu != null) {
+                if (!StringUtils.isEmpty(menu.getName())) {
+                    predicates.add(criteriaBuilder.like(root.get("name"), "%" + menu.getName() + "%"));
+                }
+                if (menu.getParent() != null && menu.getParent().getId() != null) {
+                    predicates.add(criteriaBuilder.equal(root.get("parent").get("id"), menu.getParent().getId()));
+                } else {
+                    predicates.add(criteriaBuilder.isNull(root.get("parent").get("id")));
+                }
+            }
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+        };
+
     }
 }

@@ -4,6 +4,7 @@ import cn.gsein.xuan.common.entity.BaseEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -74,4 +75,13 @@ public interface BaseDao<T extends BaseEntity> extends PagingAndSortingRepositor
     @Query("update #{#entityName} e set e.deleted = true")
     void softDeleteAll();
 
+    /**
+     * 将查询条件封装为specification
+     *
+     * @param t 查询条件
+     * @return 封装后的查询条件
+     */
+    default Specification<T> getSpecification(T t) {
+        return ((root, criteriaQuery, criteriaBuilder) -> null);
+    }
 }

@@ -8,6 +8,9 @@ import cn.gsein.xuan.core.util.Constant;
 import cn.gsein.xuan.core.util.ShiroUtil;
 import cn.gsein.xuan.modules.system.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 import java.util.Optional;
@@ -60,5 +63,17 @@ public class BaseServiceImpl<T extends BaseEntity, D extends BaseDao<T>> impleme
     @Override
     public List<T> findAll() {
         return dao.findAll();
+    }
+
+    @Override
+    public Page<T> page(T t, Pageable pageable) {
+        Specification<T> specification = dao.getSpecification(t);
+        return dao.findAll(specification, pageable);
+    }
+
+    @Override
+    public List<T> list(T t) {
+        Specification<T> specification = dao.getSpecification(t);
+        return dao.findAll(specification);
     }
 }

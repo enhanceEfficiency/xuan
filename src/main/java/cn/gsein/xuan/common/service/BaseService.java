@@ -1,6 +1,8 @@
 package cn.gsein.xuan.common.service;
 
 import cn.gsein.xuan.common.entity.BaseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,4 +22,8 @@ public interface BaseService<T extends BaseEntity> {
     Optional<T> findById(Long id);
 
     List<T> findAll();
+
+    Page<T> page(T t, Pageable pageable);
+
+    List<T> list(T t);
 }
