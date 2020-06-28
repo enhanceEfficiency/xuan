@@ -44,14 +44,21 @@ public interface MenuDao extends BaseDao<Menu> {
         List<Predicate> predicates = new ArrayList<>();
         return (root, criteriaQuery, criteriaBuilder) -> {
             if (menu != null) {
+                // 是否有查询条件
+                boolean flag = false;
                 if (!StringUtils.isEmpty(menu.getName())) {
                     predicates.add(criteriaBuilder.like(root.get("name"), "%" + menu.getName() + "%"));
+                    flag = true;
                 }
                 if (menu.getParent() != null && menu.getParent().getId() != null) {
                     predicates.add(criteriaBuilder.equal(root.get("parent").get("id"), menu.getParent().getId()));
-                } else {
+                    flag = true;
+                }
+                // 没有任何查询条件时，只查最上级菜单
+                if (!flag) {
                     predicates.add(criteriaBuilder.isNull(root.get("parent").get("id")));
                 }
+
             }
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };

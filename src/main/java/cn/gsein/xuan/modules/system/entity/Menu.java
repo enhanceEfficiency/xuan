@@ -61,6 +61,11 @@ public class Menu extends BaseEntity {
     private String ancestors;
 
     /**
+     * 菜单排序
+     */
+    private Integer order;
+
+    /**
      * 菜单所需的权限
      */
     @OneToOne
