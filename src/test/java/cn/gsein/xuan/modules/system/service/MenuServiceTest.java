@@ -38,7 +38,7 @@ class MenuServiceTest {
 
     @Test
     void save() {
-        List<Long> ids = Arrays.asList(2L, 3L, 9L, 10L);
+        List<Long> ids = Arrays.asList(2L, 3L, 9L, 20L);
         List<Permission> permissions = permissionService.findAllById(ids);
 
 //        Menu menu = new Menu();
@@ -48,26 +48,28 @@ class MenuServiceTest {
 //        menu.setAncestors("#");
 //        menuService.save(menu);
 //
-//        Menu subMenu = new Menu();
-//        subMenu.setName("用户管理");
-//        subMenu.setParent(menu);
-//        subMenu.setUrl("/user/list");
-//        subMenu.setIcon("user");
-//        subMenu.setType(MenuType.MENU);
-//        subMenu.setPermission(permissions.get(2));
-//        subMenu.setAncestors(menu.getAncestors() + "," + menu.getId());
 
-        Optional<Menu> parent = menuService.findById(15L);
 
-        Menu button = new Menu();
-        button.setName("增加");
-        button.setParent(parent.orElse(null));
-        button.setIcon("add");
-        button.setType(MenuType.BUTTON);
-        button.setPermission(permissions.get(0));
-        button.setAncestors(parent.map(menu -> menu.getAncestors() + "," + menu.getId()).orElse("#"));
+        Optional<Menu> parent = menuService.findById(14L);
 
-        menuService.save(button);
+        Menu subMenu = new Menu();
+        subMenu.setName("用户管理");
+        subMenu.setParent(parent.orElse(null));
+        subMenu.setUrl("/user/list");
+        subMenu.setIcon("user");
+        subMenu.setType(MenuType.MENU);
+        subMenu.setPermission(permissions.get(3));
+        subMenu.setAncestors(parent.map(menu->menu.getAncestors() + "," + menu.getId()).orElse("#"));
+//        Menu button = new Menu();
+
+//        button.setName("增加");
+//        button.setParent(parent.orElse(null));
+//        button.setIcon("add");
+//        button.setType(MenuType.BUTTON);
+//        button.setPermission(permissions.get(0));
+//        button.setAncestors(parent.map(menu -> menu.getAncestors() + "," + menu.getId()).orElse("#"));
+
+        menuService.save(subMenu);
     }
 
     @Test

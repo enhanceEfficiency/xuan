@@ -63,7 +63,7 @@ public class Menu extends BaseEntity {
     /**
      * 菜单排序
      */
-    private Integer order;
+    private Integer ordinal;
 
     /**
      * 菜单所需的权限

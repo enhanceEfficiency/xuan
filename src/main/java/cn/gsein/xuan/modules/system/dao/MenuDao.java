@@ -58,8 +58,8 @@ public interface MenuDao extends BaseDao<Menu> {
                 if (!flag) {
                     predicates.add(criteriaBuilder.isNull(root.get("parent").get("id")));
                 }
-
             }
+            predicates.add(criteriaBuilder.equal(root.get("deleted"), 0));
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
 
