@@ -84,6 +84,19 @@
             <version>1.1.22</version>
         </dependency>
 
+        <!-- velocity模板引擎 -->
+        <!-- https://mvnrepository.com/artifact/org.apache.velocity/velocity-engine-core -->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+            <version>2.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.velocity.tools/velocity-tools-generic -->
+        <dependency>
+            <groupId>org.apache.velocity.tools</groupId>
+            <artifactId>velocity-tools-generic</artifactId>
+            <version>3.0</version>
+        </dependency>
 
     </dependencies>
 
