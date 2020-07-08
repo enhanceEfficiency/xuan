@@ -1,0 +1,17 @@
+package cn.gsein.xuan.modules.${moduleName}.service.impl;
+
+import cn.gsein.xuan.common.service.impl.BaseServiceImpl;
+import cn.gsein.xuan.modules.${moduleName}.dao.${className}Dao;
+import cn.gsein.xuan.modules.${moduleName}.entity.${className};
+import cn.gsein.xuan.modules.${moduleName}.service.${className}Service;
+import org.springframework.stereotype.Service;
+
+/**
+ * ${comment}相关业务层实现类
+ *
+ * @author $author
+ * @since $date
+ */
+@Service
+public class ${className}ServiceImpl extends BaseServiceImpl<$className, ${className}Dao> implements ${className}Service {
+}

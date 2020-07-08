@@ -1,0 +1,15 @@
+package cn.gsein.xuan.modules.${moduleName}.dao;
+
+import cn.gsein.xuan.common.dao.BaseDao;
+import cn.gsein.xuan.modules.${moduleName}.entity.$className;
+
+
+/**
+ * ${comment}的持久层
+ *
+ * @author $author
+ * @since $date
+ */
+public interface ${className}Dao extends BaseDao<$className> {
+
+}
