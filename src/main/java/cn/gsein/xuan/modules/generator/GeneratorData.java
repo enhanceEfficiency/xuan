@@ -11,7 +11,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class GeneratorConfig {
+public class GeneratorData {
 
     /**
      * 模块名，如system
