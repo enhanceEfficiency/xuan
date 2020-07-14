@@ -63,7 +63,7 @@ public class UserController extends BaseController {
      * @return 封装的token
      */
     @PostMapping("/login")
-    public JsonResult<String> login(@RequestBody User loginUser) {
+    public JsonResult<String> login(User loginUser) {
         String username = loginUser.getUsername();
         String password = loginUser.getPassword();
         Optional<User> user = userService.findByUsernameAndDeletedIsFalse(username);

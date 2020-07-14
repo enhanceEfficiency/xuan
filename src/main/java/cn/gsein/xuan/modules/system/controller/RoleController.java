@@ -6,9 +6,7 @@ import cn.gsein.xuan.modules.system.entity.Role;
 import cn.gsein.xuan.modules.system.service.RoleService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -41,5 +39,17 @@ public class RoleController extends BaseController {
         }
         PageRequest pageRequest = PageRequest.of(current - 1, size);
         return JsonResult.ok(roleService.page(role, pageRequest));
+    }
+
+    @PostMapping("/add")
+    public JsonResult<Void> add(Role role) {
+        Role save = roleService.save(role);
+        return save.getId() != null ? JsonResult.ok() : JsonResult.error("新增失败！");
+    }
+
+    @PutMapping("/update")
+    public JsonResult<Void> update(Role role) {
+        Role save = roleService.save(role);
+        return save.getId() != null ? JsonResult.ok() : JsonResult.error("修改失败！");
     }
 }
