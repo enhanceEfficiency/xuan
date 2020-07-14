@@ -1,5 +1,6 @@
 package cn.gsein.xuan.common.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -28,12 +29,14 @@ public class BaseEntity implements Serializable {
     private Long createdUserId;
 
     @Column
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdTime;
 
     @Column
     private Long updatedUserId;
 
     @Column
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updatedTime;
 
     @Column

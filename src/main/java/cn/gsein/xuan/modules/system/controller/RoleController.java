@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 /**
  * 角色相关控制器
@@ -51,5 +52,11 @@ public class RoleController extends BaseController {
     public JsonResult<Void> update(Role role) {
         Role save = roleService.save(role);
         return save.getId() != null ? JsonResult.ok() : JsonResult.error("修改失败！");
+    }
+
+    @GetMapping("/get/{id}")
+    public JsonResult<Role> get(@PathVariable Long id) {
+        Optional<Role> role = roleService.findById(id);
+        return role.map(JsonResult::ok).orElseGet(JsonResult::error);
     }
 }
