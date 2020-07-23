@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.Optional;
 
 /**
@@ -58,5 +59,11 @@ public class RoleController extends BaseController {
     public JsonResult<Role> get(@PathVariable Long id) {
         Optional<Role> role = roleService.findById(id);
         return role.map(JsonResult::ok).orElseGet(JsonResult::error);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public JsonResult<Void> delete(@PathVariable Long id) {
+        roleService.delete(Collections.singletonList(id), true);
+        return JsonResult.ok();
     }
 }
